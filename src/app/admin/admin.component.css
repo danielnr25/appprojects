@@ -1,0 +1,27 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-drawer-inner-container{
+  background-color: aliceblue;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  background-color: #0e1f82;
+  color:aliceblue;
+  z-index: 1;
+}
+
+.mat-mdc-icon-button .mdc-button__label, .mat-mdc-icon-button .mat-icon {
+  color: white;
+}

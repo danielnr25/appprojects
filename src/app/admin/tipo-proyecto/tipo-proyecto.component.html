@@ -1,0 +1,91 @@
+@if(showProgressBar){
+  <dx-progress-bar [max]="100" [value]="progressValue">
+  </dx-progress-bar>
+  }
+  <br>
+  <div style="padding: 5px; background-color: aliceblue;">
+    <dx-data-grid class="grid theme-dependent" noDataText="" [dataSource]="dataSource" [showBorders]="true"
+      [showColumnLines]="true" [showRowLines]="true" [allowColumnResizing]="true" [focusedRowEnabled]="true"
+      [allowColumnReordering]="true" [columnAutoWidth]="false" [width]="'100%'">
+      <dxo-header-filter [visible]="true"></dxo-header-filter>
+      <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+      <dxo-search-panel [visible]="true" placeholder="Buscar"></dxo-search-panel>
+      <dxo-export [enabled]="true" [allowExportSelectedData]="true" [formats]="['xlsx', 'pdf']">
+      </dxo-export>
+
+      <dxo-toolbar [visible]="true">
+        <dxi-item location="before" widget="dxButton" [options]="opcionesNuevo">
+        </dxi-item>
+
+        <dxi-item location="before" widget="dxButton" [options]="opcionesEliminar">
+        </dxi-item>
+
+        <dxi-item name="searchPanel" location="before" locateInMenu="auto"></dxi-item>
+
+        <dxi-item name="exportButton"></dxi-item>
+        <dxi-item name="columnChooserButton" locateInMenu="auto"></dxi-item>
+      </dxo-toolbar>
+
+      <dxo-column-chooser [enabled]="true" [height]="obtenerAlto()" mode="select">
+        <dxo-position my="right top" at="right top"></dxo-position>
+        <dxo-search [enabled]="true" [editorOptions]="editorOptions"></dxo-search>
+        <dxo-selection [allowSelectAll]="true" [selectByClick]="false" [recursive]="false"></dxo-selection>
+      </dxo-column-chooser>
+
+      <dxi-column type="buttons" caption="" [width]="55">
+        <dxi-button icon="edit" text="Editar" [onClick]="fnEditar">
+        </dxi-button>
+      </dxi-column>
+
+      <dxi-column dataField="idtipo_proyecto" caption="ID" width="100">
+
+      </dxi-column>
+
+      <dxi-column dataField="nombre" caption="Nombre">
+
+      </dxi-column>
+
+      <dxi-column dataField="comentario" caption="Comentario">
+
+      </dxi-column>
+
+      <dxi-column dataField="estado" caption="Estado" width="100" alignment="center">
+
+      </dxi-column>
+
+      <dxo-selection mode="multiple" showCheckBoxesMode="always" selectAllMode="page">
+      </dxo-selection>
+      <dxo-paging [pageSize]="5"></dxo-paging>
+      <dxo-pager [visible]="true" [allowedPageSizes]="allowedPageSizes" displayMode="full"
+        [showPageSizeSelector]="showPageSizeSelector" [showInfo]="showInfo" infoText="Página {0} de {1} ({2} Registros)"
+        [showNavigationButtons]="showNavButtons">
+      </dxo-pager>
+
+    </dx-data-grid>
+  </div>
+
+  <dx-popup [showTitle]="true" title="Registro de Tipo de Proyecto" [hideOnOutsideClick]="true" [showCloseButton]="true"
+    [(visible)]="popupVisible">
+    <dx-form [formData]="elementoTipoProyecto" [labelMode]="'floating'" [showColonAfterLabel]="true"
+      [labelLocation]="'left'">
+      <dxi-item dataField="nombre" editorType="dxTextBox" caption="Nombre">
+        <dxo-label text="Nombre"> </dxo-label>
+      </dxi-item>
+
+      <dxi-item dataField="comentario" editorType="dxTextArea" caption="Comentario"
+        [editorOptions]="{autoResizeEnabled:true}">
+        <dxo-label text="Comentario"> </dxo-label>
+      </dxi-item>
+
+      <dxi-item dataField="estado" editorType="dxRadioGroup" caption="Estado"
+        [editorOptions]="{dataSource:[{text:'ACTIVO',value:'ACTIVO'},{text:'INACTIVO',value:'INACTIVO'}],layout:'horizontal', valueExpr: 'value', displayExpr:'text'}">
+        <dxo-label text="Estado"> </dxo-label>
+      </dxi-item>
+
+    </dx-form>
+
+    <dxi-toolbar-item widget="dxButton" toolbar="bottom" location="center" [options]="botonGuardarOpciones">
+    </dxi-toolbar-item>
+
+  </dx-popup>
+

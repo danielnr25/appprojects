@@ -1,0 +1,29 @@
+.sidenav-cointaner{
+  height: 100%;
+}
+
+.sidenav{
+  background: #e2e8f0;
+  width: 240px;
+}
+
+.mat-icon{
+  color:white;
+}
+
+.sidenav .mat-toolbar{
+  color:blue;
+  background: #e2e8f0;
+}
+
+.mat-toolbar.mat-primary{
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #1e293b;
+  color: white;
+}
+
+.mr-2{
+  margin-left: 10px;
+}

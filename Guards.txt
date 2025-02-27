@@ -1,0 +1,24 @@
+Que son los Guards en angular
+
+Definicion: Son mecanismos de seguridad que protegen rutas, evitando acceos no autorizados o controlando la navegación dentro de la aplicación.
+
+
+Tipos de guards:
+
+1. CanActivate: restringe el acceso a una ruta
+2. CantActivateChild: Restringe el acceso a rutas hijas
+3. CanDeactivate: Controla si se puede salir de una ruta
+4. Resolve: Carga datos antes de acceder a una ruta
+5. CantLoad : Evita la carga de módulos si no cumplen ciertas condiciones
+
+
+¿Cuándo usar cada uno?
+1. CanActivate: Si queremos evitar acceso a una ruta
+2. CantActivateChild: Si queremos proteger las rutas hijas
+3. CanDeactivate: Si necesitamos confirmación antes de salir
+4. Resolve: Si necesitamos datos antes de entrar
+5. CantLoad : Si queremos evitar cargar módulos innecesarios
+
+
+Conclusión:
+Los guards en angular son esenciales para proteger rutas y mejorar la seguridad de nuestra aplicación

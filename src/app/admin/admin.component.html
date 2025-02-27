@@ -1,0 +1,33 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+  [mode]="(isHandset$ | async) ? 'over' : 'side'"
+  [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      @for(item of menusPrincipales; track item.idopcion_menu){
+        <mat-list-item>{{ item.opcion_menu }}</mat-list-item>
+        <mat-list style="margin-left:30px">
+          @for (subitem of obtenerSubMenus(item.idopcion_menu); track subitem.idopcion_menu) {
+            <a mat-list-item [routerLink]="subitem.link" routerLinkActive="active">{{ subitem.opcion_menu }}</a>
+          }
+        </mat-list>
+      }
+      <mat-list-item><a mat-list-item (click)="fnLogout()" >Cerrar Sesion</a></mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      @if (isHandset$ | async) {
+        <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+       </button>
+      }
+      <span>Mi primera aplicación</span>
+    </mat-toolbar>
+    <div class="mr-2">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
