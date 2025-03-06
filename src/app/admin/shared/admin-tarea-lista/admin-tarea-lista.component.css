@@ -1,0 +1,51 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.view-wrapper {
+  position: absolute;
+  top: 64px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.dx-toolbar {
+  padding: var(--content-padding);
+}
+
+.grid,
+.kanban,
+.gantt {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  max-height: calc(100% - var(--toolbar-height) - var(--content-padding) * 2);
+}
+
+.grid task-list-kanban,
+.grid task-list-gantt,
+.grid task-list-grid,
+.kanban task-list-kanban,
+.kanban task-list-gantt,
+.kanban task-list-grid,
+.gantt task-list-kanban,
+.gantt task-list-gantt,
+.gantt task-list-grid {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.gantt {
+  padding: 0 var(--content-padding) var(--content-padding);
+}
+
+.kanban {
+  padding: 0 0 var(--content-padding) calc(var(--content-padding) / 2);
+  background-color: white;
+}

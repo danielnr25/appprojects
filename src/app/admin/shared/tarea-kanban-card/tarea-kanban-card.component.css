@@ -1,0 +1,82 @@
+:host {
+  --low-priority-color: #dfb32f;
+  --normal-priority-color: #6fbaca;
+  --high-priority-color: #d9534f;
+  display: block;
+}
+
+.card {
+  position: relative;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.card-wrapper {
+  padding: 10px;
+}
+
+.card-wrapper dx-button {
+  position: absolute;
+  right: 10px;
+  font-size: 18px;
+  opacity: 0.87;
+}
+
+.card-wrapper.priority-low .card-priority,
+.card-wrapper.priority-low span.priority {
+  background: var(--low-priority-color);
+  color: var(--low-priority-color);
+}
+
+.card-wrapper.priority-normal .card-priority,
+.card-wrapper.priority-normal span.priority {
+  background: var(--normal-priority-color);
+  color: var(--normal-priority-color);
+}
+
+.card-wrapper.priority-high .card-priority,
+.card-wrapper.priority-high span.priority {
+  background: var(--high-priority-color);
+  color: var(--high-priority-color);
+}
+
+.card-content {
+  padding-left: 14px;
+}
+
+.card-content span.priority {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.card-content span.date {
+  padding-left: 8px;
+  font-size: 12px;
+  line-height: 14px;
+  opacity: 0.87;
+}
+
+.card-subject {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  padding-right: 40px;
+}
+
+.card-assignee {
+  padding-top: 14px;
+  font-size: 12px;
+  line-height: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-priority {
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 10px;
+  width: 4px;
+}
