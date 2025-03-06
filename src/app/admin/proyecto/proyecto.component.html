@@ -1,1 +1,18 @@
-<p>Desde Proyectos</p>
+@if(showProgressBar){
+  <dx-progress-bar
+    [max]="100"
+    [value]="progressValue">
+  </dx-progress-bar>
+}
+
+
+<dx-data-grid class="grid theme-dependent" noDataText="" [dataSource]="dataSource" [showBorders]="true"
+  [showColumnLines]="true" [showRowLines]="true" [allowColumnResizing]="true" [focusedRowEnabled]="true"
+  [allowColumnReordering]="true" [columnAutoWidth]="false" [width]="'100%'">
+  <dxo-header-filter [visible]="true"></dxo-header-filter>
+  <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+  <dxo-search-panel [visible]="true" placeholder="Buscar"></dxo-search-panel>
+  <dxo-export [enabled]="true" [allowExportSelectedData]="true" [formats]="['xlsx', 'pdf']">
+  </dxo-export>
+
+</dx-data-grid>

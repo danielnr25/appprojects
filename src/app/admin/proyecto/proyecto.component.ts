@@ -30,7 +30,7 @@ export class ProyectoComponent {
   @ViewChild(DxDataGridComponent, { static: true }) dataGrid?: DxDataGridComponent;
   customersData: any;
   shippersData: any;
-
+  dataSource;
   url: string='';
   masterDetailDataSource: any;
   editorOptions = { placeholder: 'Search column' };
@@ -142,10 +142,28 @@ export class ProyectoComponent {
     },
   }
 
-
-
-  constructor(){
-
+  constructor(private servicioProyectos:ProyectoService,private servicioTipoProyecto:TipoProyectoService){
+    this.fnEditar = this.fnEditar.bind(this);
+    this.dataSource = new DataSource({
+      key: 'idproyecto',
+      load: (loadOptions) => {
+        return new Promise((resolve, reject) => {
+          this.servicioProyectos.getListProyecto().subscribe({
+            next: data => {
+              console.log(data);
+              let result = {
+                data: data,
+                totalCount: data.length
+              };
+              resolve(result);
+            },
+            error: err => {
+              reject(err);
+            }
+          });
+        });
+      }
+    });
   }
 
   fnEditar(){
