@@ -83,7 +83,7 @@ export class ProyectoComponent {
       this.elementoProyecto = {
         idproyecto:0,
         nombre:'',
-        idtipoProyecto:0,
+        idtipo_proyecto:0,
         fecha_inicio:new Date(),
         fecha_fin:new Date(),
         detalle:'',
@@ -123,7 +123,7 @@ export class ProyectoComponent {
   elementoProyecto:Proyecto={
     idproyecto:0,
     nombre:'',
-    idtipoProyecto:0,
+    idtipo_proyecto:0,
     fecha_inicio:new Date(),
     fecha_fin:new Date(),
     detalle:'',
@@ -166,8 +166,39 @@ export class ProyectoComponent {
     });
   }
 
-  fnEditar(){
+  fnEditar(e:any){
+    this.elementoProyecto = e.row.data;
+    this.popupVisible = true;
+    if(this.elementoProyecto.idproyecto>0){
+      this.taskPanelItems = [
+        {
+          text: 'Proyecto',
+        },
+        {
+          text: 'Areas',
+        },
+        {
+          text: 'Etapas',
+        },
+        {
+          text: 'Estados',
+        },
+        {
+          text: 'Miembros',
+        },
+        {
+          text: 'Panel Canva',
+        }
+      ]
+    }else{
+      this.taskPanelItems = [
+        {
+          text: 'Proyecto',
+        }
+      ]
+    }
 
+    this.mostrarInformacionProyecto=true;
   }
 
   obtenerAlto(){
@@ -175,19 +206,116 @@ export class ProyectoComponent {
   }
 
   fnGuardar(){
+    let datos = {
+      idproyecto : this.elementoProyecto.idproyecto,
+      nombre : this.elementoProyecto.nombre,
+      fecha_inicio : this.elementoProyecto.fecha_inicio,
+      fecha_fin : this.elementoProyecto.fecha_fin,
+      estado : this.elementoProyecto.estado,
+      idusuario : 1,
+      detalle: this.elementoProyecto.detalle,
+      idtipo_proyecto : this.elementoProyecto.idtipo_proyecto
+    }
 
+
+    if(this.elementoProyecto.idproyecto > 0 ){
+      this.servicioProyectos.actualizarProyecto(datos).subscribe({
+        next: data => {
+          console.log(data);
+          notify({
+            message: 'Se actualizo de manera correcta',
+            type:'success',
+            displayTime: 1000,
+            animation: {
+              show: {
+                type: 'fade', duration: 400, from: 0, to: 1,
+              },
+              hide: { type: 'fade', duration: 40, to: 0 },
+            },
+          });
+        },
+        error: err => {
+          console.log(err)
+        }
+      });
+    }else{
+      this.servicioProyectos.agregarProyecto(datos).subscribe({
+        next: data => {
+          console.log(data);
+          notify({
+            message: 'Se guardo de manera correcta',
+            type:'success',
+            displayTime: 1000,
+            animation: {
+              show: {
+                type: 'fade', duration: 400, from: 0, to: 1,
+              },
+              hide: { type: 'fade', duration: 40, to: 0 },
+            },
+          });
+        },
+        error: err => {
+          console.log(err)
+        }
+      });
+    }
+  this.refresh();
   }
 
   eliminarSeleccionados(){
+    const seleccionados :any = this.dataGrid?.instance.getSelectedRowsData();
+    if (seleccionados.length === 0) {
+      notify({
+        message: 'Debe seleccionar un registro a eliminar',
+        type:'info',
+        displayTime: 1000,
+        animation: {
+          show: {
+            type: 'fade', duration: 400, from: 0, to: 1,
+          },
+          hide: { type: 'fade', duration: 40, to: 0 },
+        },
+      });
+      return;
+    }
 
+    this.showProgressBar = true;
+    const totalItems = seleccionados.length;
+    let itemsEliminados = 0;
+    seleccionados.forEach((item:any, index:any) => {
+      let datosEliminar:any={
+        idproyecto:item.idproyecto
+      };
+
+      this.servicioProyectos.eliminarProyecto(datosEliminar).subscribe({
+        next: data => {
+          console.log('data',data);
+          itemsEliminados++;
+          this.progressValue = (itemsEliminados / totalItems) * 100;
+
+          // Si todos los elementos han sido eliminados, oculta la barra de progreso
+          if (itemsEliminados === totalItems) {
+            this.showProgressBar = false;
+            this.progressValue = 0;
+
+            notify("Se elimino correctamente", 'success', 2000);
+            this.refresh();
+          }
+
+        },
+        error: errores => {
+          console.log(errores);
+        }
+      });
+    });
   }
 
   refresh(){
-
+    this.dataGrid?.instance.refresh();
   }
 
   fnCancelar(){
-
+    this.popupVisible=false;
   }
 
   tabValueChange(e:any){

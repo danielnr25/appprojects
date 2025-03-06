@@ -64,5 +64,52 @@
       <dx-tabs secondary="secondary" [width]="'auto'" [showNavButtons]="false" [scrollByContent]="true"
         [selectedIndex]="0" [items]="taskPanelItems" (onItemClick)="tabValueChange($event)"></dx-tabs>
     </dxi-item>
+
+    @if(mostrarInformacionProyecto){
+      <dx-form [formData]="elementoProyecto" [labelMode]="'floating'" [showColonAfterLabel]="true"
+      [labelLocation]="'left'">
+      <dxi-item dataField="nombre" editorType="dxTextBox" caption="Nombre">
+        <dxo-label text="Nombre"> </dxo-label>
+      </dxi-item>
+
+      <dxi-item dataField="idtipo_proyecto" editorType="dxSelectBox" caption="Tipo Proyecto"
+        [editorOptions]="{dataSource:listaTiposProyecto,layout:'horizontal', valueExpr: 'idtipo_proyecto', displayExpr:'nombre'}">
+        <dxo-label text="Tipo Proyecto"> </dxo-label>
+      </dxi-item>
+
+
+      <dxi-item dataField="fecha_inicio" editorType="dxDateBox" caption="Inicio">
+        <dxo-label text="Inicio"> </dxo-label>
+      </dxi-item>
+
+      <dxi-item dataField="fecha_fin" editorType="dxDateBox" caption="Fin">
+        <dxo-label text="Fin"> </dxo-label>
+      </dxi-item>
+
+      <dxi-item dataField="detalle" editorType="dxTextArea" caption="Detalle"
+        [editorOptions]="{autoResizeEnabled:true}">
+        <dxo-label text="Detalle"> </dxo-label>
+      </dxi-item>
+
+      <dxi-item dataField="estado" editorType="dxRadioGroup" caption="Estado"
+        [editorOptions]="{dataSource:[{text:'ACTIVO',value:'ACTIVO'},{text:'INACTIVO',value:'INACTIVO'}],layout:'horizontal', valueExpr: 'value', displayExpr:'text'}">
+        <dxo-label text="Estado"> </dxo-label>
+      </dxi-item>
+
+      </dx-form>
+
+      <dx-toolbar>
+        <dxi-item location="center">
+          <dx-button text="Guardar" icon="save" stylingMode="contained" type="default" (onClick)="fnGuardar()">
+          </dx-button>
+        </dxi-item>
+        <dxi-item location="center">
+          <dx-button text="Cancelar" icon="cancel" stylingMode="contained" type="default" (onClick)="fnCancelar()">
+          </dx-button>
+        </dxi-item>
+      </dx-toolbar>
+    }
+
+
   </dx-scroll-view>
 </dx-popup>

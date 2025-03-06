@@ -1,7 +1,7 @@
 export interface Proyecto {
   idproyecto:number,
   nombre:string,
-  idtipoProyecto:number,
+  idtipo_proyecto:number,
   fecha_inicio:Date,
   fecha_fin:Date,
   detalle:string,
