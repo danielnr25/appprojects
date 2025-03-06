@@ -1,1 +1,125 @@
-<p>admin-tarea-lista works!</p>
+<div class="view-wrapper list-page">
+  <dx-toolbar class="theme-dependent">
+    <dxi-item location="before">
+      <span class="toolbar-header">Administrador de Tareas</span>
+    </dxi-item>
+    <dxi-item location="after" locateInMenu="auto">
+      <dx-button
+        icon="plus"
+        text="Agregar Tarea"
+        type="default"
+        stylingMode="contained"
+        (onClick)="addTask()"
+      ></dx-button>
+    </dxi-item>
+
+    <dxi-item
+      location="after"
+      locateInMenu="auto"
+      widget="dxButton"
+      showText="inMenu"
+      [options]="{
+        text: 'Actualizar',
+        icon: 'refresh',
+        onClick: refresh,
+        stylingMode: 'text'
+      }"
+    ></dxi-item>
+
+
+
+
+
+  </dx-toolbar>
+
+  @if(taskCollections){
+  <ng-container>
+
+      <div class="kanban">
+        @if(tareasCargadas){
+        <tarea-kanban
+          #planningKanban
+          [dataSource]="taskCollections"
+          (addTaskEvent)="addTaskDesdePanel($event)"
+          (editTaskEvent)="editTarea($event)"
+          (eliminarTaskEvent)="eliminarTarea($event)"
+        ></tarea-kanban>
+        }
+        @else {
+          <dx-load-panel
+            [visible]="true"
+            [showPane]="false"
+            container=".content"
+            [position]="{ of: '.content' }"
+          >
+          </dx-load-panel>
+        }
+      </div>
+  </ng-container>
+}
+  @else{
+  <ng-template #loading>
+    <dx-load-panel
+      [visible]="true"
+      [showPane]="false"
+      container=".content"
+      [position]="{ of: '.content' }"
+    >
+    </dx-load-panel>
+  </ng-template>
+}
+</div>
+
+
+
+<dx-popup
+      [showTitle]="true"
+      title="Registro"
+      [hideOnOutsideClick]="true"
+      [showCloseButton]="true"
+      [(visible)]="popupVisible"
+  >
+    <dx-form [formData]="entidadGenerica"
+    [labelMode]="'floating'"
+    [showColonAfterLabel]="true"
+    [labelLocation]="'left'"
+    >
+      <dxi-item dataField="nombre" editorType="dxTextBox" caption="Nombre">
+          <dxo-label text="Nombre"> </dxo-label>
+      </dxi-item>
+
+      <dxi-item dataField="idetapa" editorType="dxSelectBox" caption="Etapa" [editorOptions]="{dataSource:lista_etapas,layout:'horizontal', valueExpr: 'idetapa', displayExpr:'nombre'}">
+        <dxo-label text="Etapa"> </dxo-label>
+      </dxi-item>
+
+      <dxi-item dataField="idarea" editorType="dxSelectBox" caption="Area" [editorOptions]="{dataSource:lista_areas,layout:'horizontal', valueExpr: 'idarea', displayExpr:'nombre'}">
+        <dxo-label text="Area"> </dxo-label>
+      </dxi-item>
+
+      <dxi-item dataField="idestado" editorType="dxSelectBox" caption="Estado" [editorOptions]="{dataSource:lista_estados,layout:'horizontal', valueExpr: 'idestado', displayExpr:'nombre'}">
+        <dxo-label text="Estado"> </dxo-label>
+      </dxi-item>
+
+      <dxi-item dataField="idmiembro" editorType="dxSelectBox" caption="Responsable" [editorOptions]="{dataSource:lista_miembros,layout:'horizontal', valueExpr: 'idmiembro', displayExpr:'nombre'}">
+        <dxo-label text="Responsable"> </dxo-label>
+      </dxi-item>
+
+
+      <dxi-item dataField="comentario" editorType="dxTextArea" caption="Comentario" [editorOptions]="{autoResizeEnabled:true}">
+        <dxo-label text="Comentario"> </dxo-label>
+    </dxi-item>
+
+
+
+
+
+    </dx-form>
+
+    <dxi-toolbar-item
+        widget="dxButton"
+        toolbar="bottom"
+        location="center"
+        [options]="guardarButtonOptions"
+    >
+    </dxi-toolbar-item>
+  </dx-popup>

@@ -1,11 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { DxDropDownButtonModule } from 'devextreme-angular/ui/drop-down-button';
 
 @Component({
-  selector: 'app-card-menu',
-  imports: [],
+  selector: 'card-menu',
   templateUrl: './card-menu.component.html',
-  styleUrl: './card-menu.component.css'
+  styleUrls: ['./card-menu.component.css'],
+  standalone:true,
+  imports:[DxDropDownButtonModule]
 })
-export class CardMenuComponent {
 
+
+export class CardMenuComponent {
+  @Input() items: any;//Array<{ text: string }>;
+  @Input() visible = true;
+
+  constructor() { }
 }

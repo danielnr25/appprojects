@@ -1,11 +1,14 @@
-import { Component } from '@angular/core';
+import {
+  Component, Input
+} from '@angular/core';
 
 @Component({
-  selector: 'app-user-avatar',
-  imports: [],
+  selector: 'user-avatar',
   templateUrl: './user-avatar.component.html',
-  styleUrl: './user-avatar.component.css'
+  styleUrls: ['./user-avatar.component.css'],
+  standalone:true
 })
-export class UserAvatarComponent {
 
+export class UserAvatarComponent {
+  @Input() dataLetters?: string | null;
 }
