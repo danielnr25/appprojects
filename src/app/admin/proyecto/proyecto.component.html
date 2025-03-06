@@ -64,6 +64,7 @@
       <dx-tabs secondary="secondary" [width]="'auto'" [showNavButtons]="false" [scrollByContent]="true"
         [selectedIndex]="0" [items]="taskPanelItems" (onItemClick)="tabValueChange($event)"></dx-tabs>
     </dxi-item>
+    <br>
 
     @if(mostrarInformacionProyecto){
       <dx-form [formData]="elementoProyecto" [labelMode]="'floating'" [showColonAfterLabel]="true"
