@@ -15,4 +15,54 @@
   <dxo-export [enabled]="true" [allowExportSelectedData]="true" [formats]="['xlsx', 'pdf']">
   </dxo-export>
 
+  <dxo-toolbar [visible]="true">
+    <dxi-item location="before" widget="dxButton" [options]="opcionesNuevo">
+    </dxi-item>
+    <dxi-item location="before" widget="dxButton" [options]="opcionesEliminar">
+    </dxi-item>
+    <dxi-item name="searchPanel" location="before" locateInMenu="auto"></dxi-item>
+    <dxi-item name="exportButton"></dxi-item>
+    <dxi-item name="columnChooserButton" locateInMenu="auto"></dxi-item>
+  </dxo-toolbar>
+  <dxo-column-chooser [enabled]="true" [height]="obtenerAlto()" mode="select">
+    <dxo-position my="right top" at="right top"></dxo-position>
+    <dxo-search [enabled]="true" [editorOptions]="editorOptions"></dxo-search>
+    <dxo-selection [allowSelectAll]="true" [selectByClick]="false" [recursive]="false"></dxo-selection>
+  </dxo-column-chooser>
+
+  <dxi-column type="buttons" caption="" [width]="55">
+    <dxi-button icon="edit" text="Editar" [onClick]="fnEditar">
+    </dxi-button>
+  </dxi-column>
+  <dxi-column dataField="idproyecto" caption="ID" width="100">
+  </dxi-column>
+  <dxi-column dataField="nombre" caption="Nombre">
+  </dxi-column>
+  <dxi-column dataField="fecha_inicio" caption="Inicio">
+  </dxi-column>
+  <dxi-column dataField="fecha_fin" caption="Fin">
+  </dxi-column>
+  <dxi-column dataField="detalle" caption="Detalle">
+  </dxi-column>
+  <dxi-column dataField="estado" caption="Estado" width="100" alignment="center">
+  </dxi-column>
+
+  <dxo-selection mode="multiple" showCheckBoxesMode="always" selectAllMode="page">
+  </dxo-selection>
+  <dxo-paging [pageSize]="5"></dxo-paging>
+  <dxo-pager [visible]="true" [allowedPageSizes]="allowedPageSizes" displayMode="full"
+    [showPageSizeSelector]="showPageSizeSelector" [showInfo]="showInfo" infoText="Página {0} de {1} ({2} Registros)"
+    [showNavigationButtons]="showNavButtons">
+  </dxo-pager>
 </dx-data-grid>
+
+
+<dx-popup [showTitle]="true" title="Registro de Proyecto" [hideOnOutsideClick]="true" [showCloseButton]="true"
+  [(visible)]="popupVisible">
+  <dx-scroll-view>
+    <dxi-item>
+      <dx-tabs secondary="secondary" [width]="'auto'" [showNavButtons]="false" [scrollByContent]="true"
+        [selectedIndex]="0" [items]="taskPanelItems" (onItemClick)="tabValueChange($event)"></dx-tabs>
+    </dxi-item>
+  </dx-scroll-view>
+</dx-popup>

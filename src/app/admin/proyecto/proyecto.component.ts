@@ -84,8 +84,8 @@ export class ProyectoComponent {
         idproyecto:0,
         nombre:'',
         idtipoProyecto:0,
-        fechaInicio:new Date(),
-        fechaFin:new Date(),
+        fecha_inicio:new Date(),
+        fecha_fin:new Date(),
         detalle:'',
         estado:'',
         idusuario:1
@@ -124,8 +124,8 @@ export class ProyectoComponent {
     idproyecto:0,
     nombre:'',
     idtipoProyecto:0,
-    fechaInicio:new Date(),
-    fechaFin:new Date(),
+    fecha_inicio:new Date(),
+    fecha_fin:new Date(),
     detalle:'',
     estado:'',
     idusuario:1
@@ -171,7 +171,7 @@ export class ProyectoComponent {
   }
 
   obtenerAlto(){
-
+    return window.innerHeight;
   }
 
   fnGuardar(){
@@ -190,8 +190,8 @@ export class ProyectoComponent {
 
   }
 
-  tabValueChange(){
-
+  tabValueChange(e:any){
+    this.mostrarInformacionProyecto=(e.itemIndex == 0);
   }
 
 }
