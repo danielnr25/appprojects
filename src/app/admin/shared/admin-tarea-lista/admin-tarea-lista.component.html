@@ -108,18 +108,12 @@
       <dxi-item dataField="comentario" editorType="dxTextArea" caption="Comentario" [editorOptions]="{autoResizeEnabled:true}">
         <dxo-label text="Comentario"> </dxo-label>
     </dxi-item>
-
-
-
-
-
     </dx-form>
 
-    <dxi-toolbar-item
-        widget="dxButton"
-        toolbar="bottom"
-        location="center"
-        [options]="guardarButtonOptions"
-    >
-    </dxi-toolbar-item>
+    <dx-toolbar>
+      <dxi-item
+      widget="dxButton"
+      [options]="guardarButtonOptions"
+      > </dxi-item>
+    </dx-toolbar>
   </dx-popup>
