@@ -1,5 +1,5 @@
 import {
-  Component, NgModule, Input, SimpleChanges, OnChanges, ViewChild, Output, EventEmitter,
+  Component,Input, OnChanges, ViewChild, Output, EventEmitter,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DxButtonModule } from 'devextreme-angular/ui/button';
@@ -47,7 +47,7 @@ export class TareaKanbanComponent implements OnChanges {
   statuses = taskStatusList;
 
   boardMenuItems: Array<{ text: string }> = [
-    { text: 'Agregar Atrea' },
+    { text: 'Agregar Tarea' },
     { text: 'Copia Lista' },
     { text: 'Mover Lista' },
   ];

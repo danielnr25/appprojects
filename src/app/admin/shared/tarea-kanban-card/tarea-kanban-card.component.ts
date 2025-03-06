@@ -4,15 +4,11 @@ import {
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { DxButtonModule, DxToastModule } from 'devextreme-angular';
-import notify from 'devextreme/ui/notify';
 import { UserAvatarComponent } from "../user-avatar/user-avatar.component";
-import { Observable } from 'rxjs';
-
-
 @Component({
     selector: 'task-kanban-card',
     templateUrl: './tarea-kanban-card.component.html',
-    styleUrls: ['./tarea-kanban-card.component.scss'],
+    styleUrls: ['./tarea-kanban-card.component.css'],
     standalone: true,
     imports: [
         DxButtonModule,
